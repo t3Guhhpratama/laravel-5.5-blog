@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return view('child');
-
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
 
-// Route::get()
+Route::post('register', 'UserController@create')->name('register.post');
+Route::get('register', function(){
+  return view('regsiter');
+});

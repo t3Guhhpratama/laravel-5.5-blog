@@ -2,19 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
-
-                    <div class="panel-body">
-                      <div class="row">
-                        <form>
-                          <div class="form-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                          </div>
-                        </form>
-                      </div>
-                    </div>
+              <form name="loginform" v-on:submit.prevent="onSubmit">
+                <div class="form-group">
+                  <input name="email" type="email" class="form-control" placeholder="name@example.com">
                 </div>
+                <div class="form-group">
+                  <input name="password" type="password" class="form-control" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                </div>
+              </form>
             </div>
         </div>
     </div>
@@ -24,6 +22,14 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        methods:{
+          onSubmit(event){
+            var data = $('form[name=loginform]').serialize();
+            $.post( "/login", input, function( data ) {
+              console.log( data); // John
+            }, "json");
+          }
         }
     }
 </script>

@@ -42655,9 +42655,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5074d783", Component.options)
+    hotAPI.createRecord("data-v-326156a4", Component.options)
   } else {
-    hotAPI.reload("data-v-5074d783", Component.options)
+    hotAPI.reload("data-v-326156a4", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42735,7 +42735,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5074d783", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-326156a4", module.exports)
   }
 }
 
@@ -42775,9 +42775,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7ae1566e", Component.options)
+    hotAPI.createRecord("data-v-e1013704", Component.options)
   } else {
-    hotAPI.reload("data-v-7ae1566e", Component.options)
+    hotAPI.reload("data-v-e1013704", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42813,13 +42813,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+
+  methods: {
+    onSubmit: function onSubmit(event) {
+      var data = $('form[name=loginform]').serialize();
+      $.post("/login", input, function (data) {
+        console.log(data); // John
+      }, "json");
     }
+  }
 });
 
 /***/ }),
@@ -42830,40 +42837,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c(
+          "form",
+          {
+            attrs: { name: "loginform" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.onSubmit($event)
+              }
+            }
+          },
+          [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("form", [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "email",
-                        id: "exampleFormControlInput1",
-                        placeholder: "name@example.com"
-                      }
-                    })
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { name: "email", type: "email", placeholder: "name@example.com" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { name: "password", type: "password", placeholder: "password" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { type: "submit" } },
+        [_vm._v("Sign in")]
+      )
     ])
   }
 ]
@@ -42872,7 +42898,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7ae1566e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e1013704", module.exports)
   }
 }
 
