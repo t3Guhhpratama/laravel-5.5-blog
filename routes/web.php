@@ -22,3 +22,6 @@ Route::post('register', 'UserController@create')->name('register.post');
 Route::get('register', function(){
   return view('regsiter');
 });
+
+Route::get('user', 'UserController@index');
+Route::get('user-create', 'UserController@create');
