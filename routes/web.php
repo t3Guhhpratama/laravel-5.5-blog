@@ -12,16 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('child');
+    return view('home');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::post('register', 'UserController@create')->name('register.post');
-Route::get('register', function(){
-  return view('regsiter');
-});
-
-Route::get('user', 'UserController@index');
-Route::get('user-create', 'UserController@create');
