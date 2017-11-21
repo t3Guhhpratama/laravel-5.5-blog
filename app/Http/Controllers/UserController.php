@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUsers;
 
 class UserController extends Controller
 {
@@ -42,19 +43,19 @@ class UserController extends Controller
     //     $this->middleware('guest')->except('logout');
     // }
     public function index(){
-      return DB::table('user')->get();
-      $value = Cache::remember('user', 1 , function() {
-          return DB::table('user')->get();
-      });
-      // $value = Cache::get('user');
-      return $value;
+      $data = DB::table('users')->get();
+      return response()->json($data);
     }
+
     public function create(Request $request)
     {
-      $hashed = Hash::make('qwerty', [
-          'rounds' => 12
-      ]);
-      $user = DB::insert('insert into user (email, password) values (?, ?)', ['t@gmail.com', $hashed]);
-      dd($user);
+      $name = $request->input('name');
+      $email = $request->input('email');
+      $password = $request->input('password');
+
+      $hashed = Hash::make($password);
+
+      $user = DB::insert('insert into users (name, email, password) values (?, ?,?)', [$name, $email, $hashed]);
+      return response()->json($user);
     }
 }
