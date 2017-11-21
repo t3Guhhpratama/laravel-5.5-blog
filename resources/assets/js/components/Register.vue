@@ -1,6 +1,6 @@
 <template>
  <div class="col-md-12">
-        <form class="form-horizontal" role="form" v-on:submit.prevent="onSubmit">
+        <form class="form-horizontal" role="form" v-on:submit.prevent="register">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -15,7 +15,7 @@
                         <label class="sr-only" for="email">Fullname</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="fullname" required="" autofocus="">
+                            <input type="text" v-model="name" class="form-control" placeholder="fullname" required="" autofocus="">
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <label class="sr-only" for="email">E-Mail Address</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="text" name="email" class="form-control" id="email" placeholder="you@example.com" required="" autofocus="">
+                            <input type="text" v-model="email" class="form-control" id="email" placeholder="you@example.com" required="" autofocus="">
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <label class="sr-only" for="password">Password</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required="">
+                            <input type="password" v-model="password" class="form-control" id="password" placeholder="Password" required="">
                         </div>
                     </div>
                 </div>
@@ -73,14 +73,24 @@
         mounted() {
             console.log('Component mounted.')
         },
+        data(){
+          return{
+            name:'',
+            email:'',
+            password:''
+          }
+        },
         methods:{
           register(event){
               // GET /someUrl
-              this.$http.post('/api/users').then(response => {
+              this.$http.post('/api/users',
+              {name: this.name, email: this.email, password: this.password}).then(response => {
 
                 // get body data
-                this.userData = response.body;
+                this.$router.push({ path: '/' });
+                console.log(response.body);
               }, response => {
+                console.log(response);
                 // error callback
               });
           }

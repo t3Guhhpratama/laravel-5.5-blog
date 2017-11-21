@@ -47039,17 +47039,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     console.log('Component mounted.');
   },
+  data: function data() {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    };
+  },
 
   methods: {
     register: function register(event) {
       var _this = this;
 
       // GET /someUrl
-      this.$http.post('/api/users').then(function (response) {
+      this.$http.post('/api/users', { name: this.name, email: this.email, password: this.password }).then(function (response) {
 
         // get body data
-        _this.userData = response.body;
+        _this.$router.push({ path: '/' });
+        console.log(response.body);
       }, function (response) {
+        console.log(response);
         // error callback
       });
     }
@@ -47073,18 +47082,144 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            _vm.onSubmit($event)
+            _vm.register($event)
           }
         }
       },
       [
         _vm._m(0),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group has-danger" }, [
+              _c("label", { staticClass: "sr-only", attrs: { for: "email" } }, [
+                _vm._v("Fullname")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "fullname",
+                    required: "",
+                    autofocus: ""
+                  },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group has-danger" }, [
+              _c("label", { staticClass: "sr-only", attrs: { for: "email" } }, [
+                _vm._v("E-Mail Address")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "email",
+                    placeholder: "you@example.com",
+                    required: "",
+                    autofocus: ""
+                  },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(3),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "label",
+                { staticClass: "sr-only", attrs: { for: "password" } },
+                [_vm._v("Password")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    id: "password",
+                    placeholder: "Password",
+                    required: ""
+                  },
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _vm._m(4),
         _vm._v(" "),
@@ -47112,117 +47247,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group has-danger" }, [
-          _c("label", { staticClass: "sr-only", attrs: { for: "email" } }, [
-            _vm._v("Fullname")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
-            _c(
-              "div",
-              {
-                staticClass: "input-group-addon",
-                staticStyle: { width: "2.6rem" }
-              },
-              [_c("i", { staticClass: "fa fa-at" })]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "name",
-                id: "name",
-                placeholder: "fullname",
-                required: "",
-                autofocus: ""
-              }
-            })
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "input-group-addon", staticStyle: { width: "2.6rem" } },
+      [_c("i", { staticClass: "fa fa-at" })]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group has-danger" }, [
-          _c("label", { staticClass: "sr-only", attrs: { for: "email" } }, [
-            _vm._v("E-Mail Address")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
-            _c(
-              "div",
-              {
-                staticClass: "input-group-addon",
-                staticStyle: { width: "2.6rem" }
-              },
-              [_c("i", { staticClass: "fa fa-at" })]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "email",
-                id: "email",
-                placeholder: "you@example.com",
-                required: "",
-                autofocus: ""
-              }
-            })
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "input-group-addon", staticStyle: { width: "2.6rem" } },
+      [_c("i", { staticClass: "fa fa-at" })]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "sr-only", attrs: { for: "password" } }, [
-            _vm._v("Password")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group mb-2 mr-sm-2 mb-sm-0" }, [
-            _c(
-              "div",
-              {
-                staticClass: "input-group-addon",
-                staticStyle: { width: "2.6rem" }
-              },
-              [_c("i", { staticClass: "fa fa-key" })]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                name: "password",
-                id: "password",
-                placeholder: "Password",
-                required: ""
-              }
-            })
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "input-group-addon", staticStyle: { width: "2.6rem" } },
+      [_c("i", { staticClass: "fa fa-key" })]
+    )
   },
   function() {
     var _vm = this
