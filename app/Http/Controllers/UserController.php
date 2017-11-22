@@ -58,4 +58,18 @@ class UserController extends Controller
       $user = DB::insert('insert into users (name, email, password) values (?, ?,?)', [$name, $email, $hashed]);
       return response()->json($user);
     }
+
+    public function login(Request $request)
+    {
+      $email = $request->input('email');
+      $password = $request->input('password');
+      $users = DB::table('users')->where('email',$email)->first();
+      if($users){
+        if (Hash::check($password, $users->password)) {
+            // The passwords match...
+            return response()->json('success');
+        }
+      }
+      return response()->json('failed');
+    }
 }

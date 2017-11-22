@@ -19,3 +19,4 @@ use Illuminate\Http\Request;
 
 Route::get('users', 'UserController@index');
 Route::post('users', 'UserController@create');
+Route::post('login', 'UserController@login');

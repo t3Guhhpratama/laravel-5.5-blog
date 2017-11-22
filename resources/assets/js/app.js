@@ -10,9 +10,11 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import VeeValidate from 'vee-validate';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(VeeValidate);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,22 +23,42 @@ Vue.use(VueResource);
 import Register from './components/Register.vue';
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
+import Dashboard from './components/Dashboard.vue';
 
-Vue.component('register-component', require('./components/Register.vue'));
-Vue.component('login-component', require('./components/Login.vue'));
+// Vue.component('register-component', require('./components/Register.vue'));
+// Vue.component('login-component', require('./components/Login.vue'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] =  document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/register', component: Register },
-  { path: '/login', component: Login }
+  { path: '/', component: Home, name:'home', meta: { requiresAuth: true }},
+  { path: '/register', component: Register, name:'register' },
+  { path: '/login', component: Login, name:'login' },
+  { path: '/dashboard', component: Dashboard, name:'dashboard', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({
   mode: 'history',
+  hashbang: false,
   routes // short for `routes: routes`
-})
+});
+
+router.beforeEach((to, from, next) => {
+  // localStorage.removeItem('token');
+  if(to.meta.requiresAuth){
+
+    const authUser = localStorage.getItem('token');
+    if(authUser){
+      next();
+    }else{
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      });
+    }
+  }
+  next();
+});
 
 const app = new Vue({
   router
