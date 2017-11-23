@@ -1,10 +1,8 @@
 <template>
     <div class="container">
         <div class="row">
-            <button v-on:click="loadData" class="btn btn-primary">Load data</button>
-        </div>
-        <div class="row">
-
+            <button v-on:click="loadData" type="button" class="btn btn-primary">Load data</button>
+            <button v-on:click="loadUsers" type="button" class="btn btn-primary">Users</button>
         </div>
         <div class="row">
             <table class="table">
@@ -25,6 +23,7 @@
                   </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 </template>
@@ -40,6 +39,9 @@
               number: 0
           }
         },
+        created(){
+          this.$store.dispatch("fetchUsers")
+        },
         methods:{
           loadData:function(event){
           // GET /someUrl
@@ -50,6 +52,14 @@
             }, response => {
               // error callback
             });
+          },
+          userPage(){
+            this.$router.push({path: 'user'});
+          },
+          loadUsers(){
+            this.$store.dispatch('fetchUsers');
+            // console.log("Users--->",this.$store.state.users)
+            console.log(this.$store.state.users);
           }
         }
     }

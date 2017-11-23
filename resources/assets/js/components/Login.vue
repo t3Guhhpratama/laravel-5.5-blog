@@ -57,9 +57,14 @@ export default {
               {email: this.email, password: this.password}).then(response => {
                 // get body data
                 if(response.body == 'failed'){
+                  console.log(response.body);
                   this.$router.push({ path: '/login' });
+                }else{
+                  localStorage.setItem('token', 12345);
+                  this.$store.commit('hideLogin');
+                  this.$router.push({ path: '/' });
                 }
-                this.$router.push({ path: '/dashboard' });
+
               }, response => {
                 console.log(response);
                 // error callback
