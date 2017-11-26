@@ -1140,7 +1140,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
     register: true,
     logout: false,
     users: [],
-    count: 0
+    count: 0,
+    alert_error: false
   },
   mutations: {
     hideLogin: function hideLogin(state) {
@@ -1151,6 +1152,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
     },
     increment: function increment(state) {
       state.count++;
+    },
+    alert_error_update: function alert_error_update(state) {
+      state.alert_error = true;
     }
   },
   actions: {
@@ -1167,6 +1171,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
       var commit = _ref.commit;
 
       commit('increment');
+    },
+    alertErrorCommit: function alertErrorCommit(_ref2) {
+      var commit = _ref2.commit;
+
+      commit('alert_error_update');
     }
   }
 });
@@ -46947,7 +46956,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 /* unused harmony export Rules */
 /* unused harmony export version */
 /**
-  * vee-validate v2.0.0-rc.23
+  * vee-validate v2.0.0-rc.25
   * (c) 2017 Abdelrahman Awad
   * @license MIT
   */
@@ -47295,10 +47304,25 @@ var assign = function (target) {
   return to;
 };
 
+var id = 0;
+var idTemplate = '{id}';
+
 /**
  * Generates a unique id.
  */
-var uniqId = function () { return ("_" + (Math.random().toString(36).substr(2, 9))); };
+var uniqId = function () {
+  // handle too many uses of uniqId, although unlikely.
+  if (id >= 9999) {
+    id = 0;
+    // shift the template.
+    idTemplate = idTemplate.replace('{id}', '_{id}');
+  }
+
+  id++;
+  var newId = idTemplate.replace('{id}', String(id));
+
+  return newId;
+};
 
 /**
  * finds the first element that satisfies the predicate callback, polyfills array.find
@@ -47365,13 +47389,16 @@ var makeDelayObject = function (events, delay) {
 };
 
 var deepParseInt = function (input) {
+  if (typeof input === 'number') { return input; }
+
   if (typeof input === 'string') { return parseInt(input); }
 
+  var map = {};
   for (var element in input) {
-    input[element] = parseInt(input[element]);
+    map[element] = parseInt(input[element]);
   }
 
-  return input;
+  return map;
 };
 
 // 
@@ -53712,7 +53739,7 @@ var mapFields = function (fields) {
   }, {});
 };
 
-var version = '2.0.0-rc.23';
+var version = '2.0.0-rc.25';
 
 var rulesPlugin = function (ref) {
   var Validator$$1 = ref.Validator;
@@ -54724,9 +54751,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8fbf08c4", Component.options)
+    hotAPI.createRecord("data-v-3826b91a", Component.options)
   } else {
-    hotAPI.reload("data-v-8fbf08c4", Component.options)
+    hotAPI.reload("data-v-3826b91a", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55093,7 +55120,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8fbf08c4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3826b91a", module.exports)
   }
 }
 
@@ -55133,9 +55160,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e1013704", Component.options)
+    hotAPI.createRecord("data-v-7ae1566e", Component.options)
   } else {
-    hotAPI.reload("data-v-e1013704", Component.options)
+    hotAPI.reload("data-v-7ae1566e", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55189,10 +55216,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+
+  computed: {
+    alert_error: function alert_error() {
+      return this.$store.state.alert_error;
+    }
   },
   data: function data() {
     return {
@@ -55213,7 +55251,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // get body data
             if (response.body == 'failed') {
               console.log(response.body);
-              _this.$router.push({ path: '/login' });
+              _this.$store.dispatch('alertErrorCommit');
+              // this.$router.push({ path: '/login' });
             } else {
               localStorage.setItem('token', 12345);
               _this.$store.commit('hideLogin');
@@ -55255,9 +55294,29 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.alert_error,
+                expression: "alert_error"
+              }
+            ],
+            staticClass: "alert alert-danger",
+            attrs: { role: "alert" }
+          },
+          [
+            _vm._v("\n             Wrong Email or Password!\n             "),
+            _vm._m(1)
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group " }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -55313,7 +55372,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group " }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -55367,7 +55426,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(3)
+        _vm._m(4)
       ]
     )
   ])
@@ -55384,6 +55443,23 @@ var staticRenderFns = [
         _c("hr")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
@@ -55425,7 +55501,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e1013704", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7ae1566e", module.exports)
   }
 }
 
@@ -55465,9 +55541,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f069a54c", Component.options)
+    hotAPI.createRecord("data-v-602687af", Component.options)
   } else {
-    hotAPI.reload("data-v-f069a54c", Component.options)
+    hotAPI.reload("data-v-602687af", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55647,7 +55723,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f069a54c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-602687af", module.exports)
   }
 }
 
@@ -55687,9 +55763,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-77bb0ba9", Component.options)
+    hotAPI.createRecord("data-v-75184318", Component.options)
   } else {
-    hotAPI.reload("data-v-77bb0ba9", Component.options)
+    hotAPI.reload("data-v-75184318", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55752,7 +55828,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-77bb0ba9", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-75184318", module.exports)
   }
 }
 
@@ -55792,9 +55868,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d6386374", Component.options)
+    hotAPI.createRecord("data-v-6d3f289b", Component.options)
   } else {
-    hotAPI.reload("data-v-d6386374", Component.options)
+    hotAPI.reload("data-v-6d3f289b", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55965,7 +56041,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d6386374", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6d3f289b", module.exports)
   }
 }
 
@@ -56005,9 +56081,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2f8d6710", Component.options)
+    hotAPI.createRecord("data-v-5a8ed383", Component.options)
   } else {
-    hotAPI.reload("data-v-2f8d6710", Component.options)
+    hotAPI.reload("data-v-5a8ed383", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -56149,7 +56225,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2f8d6710", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5a8ed383", module.exports)
   }
 }
 

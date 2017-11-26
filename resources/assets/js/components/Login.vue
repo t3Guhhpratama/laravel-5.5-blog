@@ -7,7 +7,12 @@
                     <hr>
                 </div>
             </div>
-
+            <div class="alert alert-danger" role="alert" v-show="alert_error">
+              Wrong Email or Password!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <div class="form-group">
               <div class="input-group ">
                 <span class="input-group-addon"><i class="fa fa-at"></i></span>
@@ -41,6 +46,11 @@ export default {
     mounted() {
         console.log('Component mounted.')
     },
+    computed:{
+      alert_error(){
+          return this.$store.state.alert_error
+      }
+    },
     data(){
       return{
         name:'',
@@ -58,7 +68,8 @@ export default {
                 // get body data
                 if(response.body == 'failed'){
                   console.log(response.body);
-                  this.$router.push({ path: '/login' });
+                  this.$store.dispatch('alertErrorCommit');
+                  // this.$router.push({ path: '/login' });
                 }else{
                   localStorage.setItem('token', 12345);
                   this.$store.commit('hideLogin');

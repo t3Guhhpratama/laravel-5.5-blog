@@ -50,7 +50,8 @@ const store = new Vuex.Store({
     register: true,
     logout: false,
     users:[],
-    count: 0
+    count: 0,
+    alert_error:false
   },
   mutations:{
     hideLogin(state){
@@ -63,6 +64,9 @@ const store = new Vuex.Store({
     },
     increment (state) {
       state.count++
+    },
+    alert_error_update(state){
+      state.alert_error = true
     }
   },
   actions:{
@@ -79,6 +83,9 @@ const store = new Vuex.Store({
     },
     increment ({commit}) {
      commit('increment')
+   },
+   alertErrorCommit({commit}){
+     commit('alert_error_update')
    }
   }
 });

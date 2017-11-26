@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::any('{all}', function () {
+    return view('home');
+})
+->where(['all' => '.*']);
