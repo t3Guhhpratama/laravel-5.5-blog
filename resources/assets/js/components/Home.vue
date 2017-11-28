@@ -47,9 +47,6 @@
               number: 0
           }
         },
-        created(){
-          this.$store.dispatch("fetchUsers")
-        },
         methods:{
           loadData:function(event){
           // GET /someUrl
@@ -63,11 +60,6 @@
           },
           userPage(){
             this.$router.push({path: 'user'});
-          },
-          loadUsers(){
-            this.$store.dispatch('fetchUsers');
-            // console.log("Users--->",this.$store.state.users)
-            console.log(this.$store.state.users);
           }
         }
     }

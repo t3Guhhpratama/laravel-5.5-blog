@@ -9,7 +9,7 @@
             </div>
             <div class="alert alert-danger" role="alert" v-show="alert_error">
               Wrong Email or Password!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" v-on:click="close_alert">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -68,7 +68,7 @@ export default {
                 // get body data
                 if(response.body == 'failed'){
                   console.log(response.body);
-                  this.$store.dispatch('alertErrorCommit');
+                  this.$store.dispatch('alertErrorCommit', 1);
                   // this.$router.push({ path: '/login' });
                 }else{
                   localStorage.setItem('token', 12345);
@@ -84,6 +84,9 @@ export default {
             }
             alert('Correct them errors!');
         });
+      },
+      close_alert(){
+        this.$store.dispatch('alertErrorCommit', 0);
       }
     }
 }

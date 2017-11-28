@@ -72,4 +72,15 @@ class UserController extends Controller
       }
       return response()->json('failed');
     }
+
+    public function uploadPhoto(Request $request)
+    {
+      // $data = $request->input('data');
+      // dd($data);
+      if ($request->hasFile('photo')) {
+          $path = $request->photo->store('images');
+          dd($path);
+      }
+      dd('lewat');
+    }
 }

@@ -10,7 +10,7 @@
         <router-link class="nav-link disabled" to="/register" v-show="register">Register</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link disabled" to="" v-show="logout">logout</router-link>
+        <a class="nav-link disabled" to="#" v-show="logout" v-on:click="logoutMethod">logout</a>
       </li>
     </ul>
   </nav>
@@ -30,6 +30,11 @@
             }
         },
         methods:{
+          logoutMethod(){
+            this.$router.push({ path: '/login' });
+            localStorage.removeItem('token');
+            this.$store.commit('showLogin');
+          }
         }
     }
 </script>

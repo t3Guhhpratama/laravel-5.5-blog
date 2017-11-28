@@ -11,12 +11,12 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
-import Vuex from 'vuex';
+// import Vuex from 'vuex';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VeeValidate);
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +28,9 @@ import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
+
+//Vuex
+import store from './store';
 
 Vue.component('nav-component', require('./components/Nav.vue'),
   {data: {
@@ -44,51 +47,56 @@ const routes = [
   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }}
 ]
 
-const store = new Vuex.Store({
-  state:{
-    login: true,
-    register: true,
-    logout: false,
-    users:[],
-    count: 0,
-    alert_error:false
-  },
-  mutations:{
-    hideLogin(state){
-      state.login = false,
-      state.register = false,
-      state.logout = true
-    },
-    fetch_users(state, users){
-      state.users = users
-    },
-    increment (state) {
-      state.count++
-    },
-    alert_error_update(state){
-      state.alert_error = true
-    }
-  },
-  actions:{
-    fetchUsers(context){
-      Vue.http.get("/api/users")
-        .then((response) => {
-            // console.log(response.bodyText);
-            context.commit("fetch_users", response.bodyText)
-            // self.filterUsers();
-        })
-        .catch((error => {
-            console.log(error.statusText)
-        }))
-    },
-    increment ({commit}) {
-     commit('increment')
-   },
-   alertErrorCommit({commit}){
-     commit('alert_error_update')
-   }
-  }
-});
+// const store = new Vuex.Store({
+//   state:{
+//     login: true,
+//     register: true,
+//     logout: false,
+//     users:[],
+//     count: 0,
+//     alert_error:false
+//   },
+//   mutations:{
+//     hideLogin(state){
+//       state.login = false,
+//       state.register = false,
+//       state.logout = true
+//     },
+//     showLogin(state){
+//       state.login = true,
+//       state.register = true,
+//       state.logout = false
+//     },
+//     fetch_users(state, users){
+//       state.users = users
+//     },
+//     increment (state) {
+//       state.count++
+//     },
+//     alert_error_update(state, val){
+//       state.alert_error = val
+//     }
+//   },
+//   actions:{
+//    //  fetchUsers(context){
+//    //    Vue.http.get("/api/users")
+//    //      .then((response) => {
+//    //          // console.log(response.bodyText);
+//    //          context.commit("fetch_users", response.bodyText)
+//    //          // self.filterUsers();
+//    //      })
+//    //      .catch((error => {
+//    //          console.log(error.statusText)
+//    //      }))
+//    //  },
+//    //  increment ({commit}) {
+//    //   commit('increment')
+//    // },
+//    alertErrorCommit(commit, val){
+//      store.commit('alert_error_update',val)
+//    }
+//   }
+// });
 
 const router = new VueRouter({
   mode: 'history',
@@ -115,7 +123,7 @@ router.beforeEach((to, from, next) => {
 
 const app = new Vue({
   router,
-  store:store
+  store
 }).$mount('#app')
 
 // const app = new Vue({
