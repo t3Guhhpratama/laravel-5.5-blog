@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUsers;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -75,12 +76,14 @@ class UserController extends Controller
 
     public function uploadPhoto(Request $request)
     {
-      // $data = $request->input('data');
-      // dd($data);
+      // $files = Storage::files('images');
+      // $files = Storage::get('images/ES6HeHDKm3k2w8kLdwtr2VrVKI8FKEKgj5xlf77w.jpeg');
+      // dd($files);
       if ($request->hasFile('photo')) {
           $path = $request->photo->store('images');
           dd($path);
+          return response()->json('success');
       }
-      dd('lewat');
+      return response()->json('No Data');
     }
 }

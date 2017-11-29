@@ -28,6 +28,7 @@ import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
+import Product from './components/Product.vue';
 
 //Vuex
 import store from './store';
@@ -44,59 +45,9 @@ const routes = [
   { path: '/register', component: Register, name:'register' },
   { path: '/login', component: Login, name:'login' },
   { path: '/dashboard', component: Dashboard, name:'dashboard', meta: { requiresAuth: true }},
-  { path: '/user', component: User, name:'user', meta: { requiresAuth: true }}
+  { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
+  { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }}
 ]
-
-// const store = new Vuex.Store({
-//   state:{
-//     login: true,
-//     register: true,
-//     logout: false,
-//     users:[],
-//     count: 0,
-//     alert_error:false
-//   },
-//   mutations:{
-//     hideLogin(state){
-//       state.login = false,
-//       state.register = false,
-//       state.logout = true
-//     },
-//     showLogin(state){
-//       state.login = true,
-//       state.register = true,
-//       state.logout = false
-//     },
-//     fetch_users(state, users){
-//       state.users = users
-//     },
-//     increment (state) {
-//       state.count++
-//     },
-//     alert_error_update(state, val){
-//       state.alert_error = val
-//     }
-//   },
-//   actions:{
-//    //  fetchUsers(context){
-//    //    Vue.http.get("/api/users")
-//    //      .then((response) => {
-//    //          // console.log(response.bodyText);
-//    //          context.commit("fetch_users", response.bodyText)
-//    //          // self.filterUsers();
-//    //      })
-//    //      .catch((error => {
-//    //          console.log(error.statusText)
-//    //      }))
-//    //  },
-//    //  increment ({commit}) {
-//    //   commit('increment')
-//    // },
-//    alertErrorCommit(commit, val){
-//      store.commit('alert_error_update',val)
-//    }
-//   }
-// });
 
 const router = new VueRouter({
   mode: 'history',

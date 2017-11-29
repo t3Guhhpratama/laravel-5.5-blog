@@ -1,18 +1,17 @@
 <template>
     <div class="container">
         <div class="row">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <div class="btn-group" role="group">
             <button  v-on:click="loadData" type="button" class="btn btn-primary">Load data</button>
             <button v-on:click="userPage" type="button" class="btn btn-primary">Users</button>
+            <button v-on:click="productPage" type="button" class="btn btn-primary">Product</button>
           </div>
         </div>
         <!-- <div class="row">
             <button v-on:click="loadData" type="button" class="btn btn-primary">Load data</button>
             <button v-on:click="loadUsers" type="button" class="btn btn-primary">Users</button>
         </div> -->
-        <div>
-
-        </div>
+        <br />
         <div class="row">
           <table class="table">
               <thead class="thead-dark">
@@ -60,6 +59,9 @@
           },
           userPage(){
             this.$router.push({path: 'user'});
+          },
+          productPage(){
+            this.$router.push({path: 'product'});
           }
         }
     }

@@ -17,6 +17,9 @@ const mutations = {
   },
   alert_error_update(state, val){
     state.alert_error = val
+  },
+  product_select_update(state, val){
+    state.selectProduct = val
   }
 }
 

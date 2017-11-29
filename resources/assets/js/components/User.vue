@@ -2,11 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-              <form class="form-horizontal" role="form" v-on:submit.prevent="login">
+              <form class="form-horizontal" role="form" v-on:submit.prevent="submitUser">
                   <div class="form-group">
                     <label for="exampleFormControlFile1">Example file input</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Name">
+                  </div>
+
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -16,7 +21,8 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  {{count}}
+                  <button type="submit" class="btn btn-primary" v-on:click="submitClick">Submit</button>
               </form>
             </div>
         </div>
@@ -25,21 +31,17 @@
 
 <script>
     export default {
-        data(){
-          return{
-
+        computed:{
+          count(){
+            return this.$store.state.count
           }
         },
         methods:{
-          loadData:function(event){
-          // GET /someUrl
-            this.$http.get('/api/users').then(response => {
-
-              // get body data
-              this.userData = response.body;
-            }, response => {
-              // error callback
-            });
+          submitUser(){
+            return this.$store.dispatch('createUser');
+          },
+          submitClick(){
+            return this.$store.dispatch('increment')
           }
         }
     }
