@@ -54587,7 +54587,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
+var editor = new MediumEditor('.editable', {
+  buttonLabels: 'fontawesome',
+  autoLink: true,
+  toolbar: {
+    buttons: ['bold', 'italic', 'unorderedlist', 'orderedlist', 'anchor']
+  }
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -54685,7 +54695,9 @@ var render = function() {
           })
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -54703,6 +54715,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Slug")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "editable" }, [_vm._v("asdafdasdf")])
     ])
   }
 ]

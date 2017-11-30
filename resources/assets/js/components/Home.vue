@@ -32,10 +32,20 @@
               </tbody>
           </table>
         </div>
+        <div class="row">
+          <div class="editable">asdafdasdf</div>
+        </div>
     </div>
 </template>
 
 <script>
+var editor = new MediumEditor('.editable', {
+           buttonLabels: 'fontawesome',
+           autoLink: true,
+           toolbar: {
+               buttons: ['bold', 'italic', 'unorderedlist', 'orderedlist', 'anchor']
+           }
+       });
     export default {
         mounted() {
             console.log('Component mounted.')
