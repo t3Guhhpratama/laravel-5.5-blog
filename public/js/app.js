@@ -13282,6 +13282,8 @@ Vue.component('nav-component', __webpack_require__(67), { data: {
     login: true
   } });
 
+Vue.component('image-component', __webpack_require__(75));
+
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_Home_vue___default.a, name: 'home', meta: { requiresAuth: true } }, { path: '/register', component: __WEBPACK_IMPORTED_MODULE_3__components_Register_vue___default.a, name: 'register' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_4__components_Login_vue___default.a, name: 'login' }, { path: '/dashboard', component: __WEBPACK_IMPORTED_MODULE_6__components_Dashboard_vue___default.a, name: 'dashboard', meta: { requiresAuth: true } }, { path: '/user', component: __WEBPACK_IMPORTED_MODULE_7__components_User_vue___default.a, name: 'user', meta: { requiresAuth: true } }, { path: '/product', component: __WEBPACK_IMPORTED_MODULE_8__components_Product_vue___default.a, name: 'product', meta: { requiresAuth: true } }];
@@ -54590,14 +54592,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-var editor = new MediumEditor('.editable', {
-  buttonLabels: 'fontawesome',
-  autoLink: true,
-  toolbar: {
-    buttons: ['bold', 'italic', 'unorderedlist', 'orderedlist', 'anchor']
-  }
-});
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -54605,11 +54617,18 @@ var editor = new MediumEditor('.editable', {
   data: function data() {
     return {
       userData: [],
-      number: 0
+      number: 0,
+      message: [],
+      activeColor: 'red',
+      fontSize: 30
     };
   },
 
   methods: {
+    changeColor: function changeColor() {
+      this.activeColor = 'blue';
+    },
+
     loadData: function loadData(event) {
       var _this = this;
 
@@ -54697,7 +54716,21 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", on: { click: _vm.changeColor } },
+        [_vm._v("Change")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { style: { color: _vm.activeColor, fontSize: _vm.fontSize + "px" } },
+        [_vm._v("\n        fgdfgasdfasd\n      ")]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -54722,7 +54755,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "editable" }, [_vm._v("asdafdasdf")])
+      _c("div", { staticClass: "editable" })
     ])
   }
 ]
@@ -56559,6 +56592,117 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(76)
+/* template */
+var __vue_template__ = __webpack_require__(77)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Image.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7cbc5520", Component.options)
+  } else {
+    hotAPI.reload("data-v-7cbc5520", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {}
+});
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("figure", { staticClass: "figure" }, [
+      _c("img", {
+        staticClass: "figure-img img-fluid rounded",
+        attrs: {
+          src: "images/hospital.jpeg",
+          width: "200",
+          alt:
+            "A generic square placeholder image with rounded corners in a figure."
+        }
+      }),
+      _vm._v(" "),
+      _c("figcaption", { staticClass: "figure-caption" }, [
+        _vm._v("A caption for the above image.")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7cbc5520", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

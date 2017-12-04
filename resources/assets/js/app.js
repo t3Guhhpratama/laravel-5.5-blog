@@ -38,6 +38,8 @@ Vue.component('nav-component', require('./components/Nav.vue'),
     login: true
   }});
 
+Vue.component('image-component', require('./components/Image.vue'));
+
 Vue.http.headers.common['X-CSRF-TOKEN'] =  document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
 const routes = [

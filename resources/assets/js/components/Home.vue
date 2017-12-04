@@ -33,19 +33,29 @@
           </table>
         </div>
         <div class="row">
-          <div class="editable">asdafdasdf</div>
+          <div class="editable"></div>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" v-on:click="changeColor">Change</button>
+          <div v-bind:style="{color:activeColor, fontSize: fontSize+'px'}">
+            fgdfgasdfasd
+          </div>
+          <!-- <div>
+              <i class="fa fa-camera-retro fa-4x"></i>
+          </div> -->
+          <!-- <image-component></image-component> -->
+          <!-- <figure class="figure">
+            <img src="images/hospital.jpeg" width="200" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+            <figcaption class="figure-caption">A caption for the above image.</figcaption>
+          </figure> -->
+          <!-- <input  v-model="message"/>
+          <p>Message is: {{ message }}</p> -->
         </div>
     </div>
 </template>
 
 <script>
-var editor = new MediumEditor('.editable', {
-           buttonLabels: 'fontawesome',
-           autoLink: true,
-           toolbar: {
-               buttons: ['bold', 'italic', 'unorderedlist', 'orderedlist', 'anchor']
-           }
-       });
+
     export default {
         mounted() {
             console.log('Component mounted.')
@@ -53,10 +63,16 @@ var editor = new MediumEditor('.editable', {
         data(){
           return{
               userData: [],
-              number: 0
+              number: 0,
+              message: [],
+              activeColor: 'red',
+              fontSize: 30
           }
         },
         methods:{
+          changeColor(){
+            this.activeColor = 'blue'
+          },
           loadData:function(event){
           // GET /someUrl
             this.$http.get('/api/users').then(response => {
