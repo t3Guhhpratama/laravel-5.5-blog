@@ -29,6 +29,7 @@ import Home from './components/Home.vue';
 import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
 import Product from './components/Product.vue';
+import TodoApp from './components/TodoApp.vue';
 
 //Vuex
 import store from './store';
@@ -48,7 +49,8 @@ const routes = [
   { path: '/login', component: Login, name:'login' },
   { path: '/dashboard', component: Dashboard, name:'dashboard', meta: { requiresAuth: true }},
   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
-  { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }}
+  { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }},
+  { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({
