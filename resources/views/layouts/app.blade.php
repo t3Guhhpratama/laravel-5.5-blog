@@ -26,12 +26,12 @@
       <!-- js -->
       <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
       <script>
-        var editor = new MediumEditor('.editable');
-        $(function () {
-            $('.editable').mediumInsert({
-                editor: editor
-            });
-        });
+        // var editor = new MediumEditor('.editable');
+        // $(function () {
+        //     $('.editable').mediumInsert({
+        //         editor: editor
+        //     });
+        // });
         // var editor = new MediumEditor('.editable', {
         //     buttonLabels: 'fontawesome',
         //     paste: {

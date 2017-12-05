@@ -14,7 +14,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
-// import * from './medium-editor';
+import editor from 'vue2-medium-editor';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -44,6 +44,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
   }});
 
 Vue.component('image-component', require('./components/Image.vue'));
+Vue.component('medium-editor', editor);
 
 Vue.http.headers.common['X-CSRF-TOKEN'] =  document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
