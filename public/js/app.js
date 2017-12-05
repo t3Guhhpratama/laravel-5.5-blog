@@ -46921,7 +46921,7 @@ if (inBrowser && window.Vue) {
 /* unused harmony export Rules */
 /* unused harmony export version */
 /**
-  * vee-validate v2.0.0-rc.25
+  * vee-validate v2.0.0-rc.23
   * (c) 2017 Abdelrahman Awad
   * @license MIT
   */
@@ -47269,25 +47269,10 @@ var assign = function (target) {
   return to;
 };
 
-var id = 0;
-var idTemplate = '{id}';
-
 /**
  * Generates a unique id.
  */
-var uniqId = function () {
-  // handle too many uses of uniqId, although unlikely.
-  if (id >= 9999) {
-    id = 0;
-    // shift the template.
-    idTemplate = idTemplate.replace('{id}', '_{id}');
-  }
-
-  id++;
-  var newId = idTemplate.replace('{id}', String(id));
-
-  return newId;
-};
+var uniqId = function () { return ("_" + (Math.random().toString(36).substr(2, 9))); };
 
 /**
  * finds the first element that satisfies the predicate callback, polyfills array.find
@@ -47354,16 +47339,13 @@ var makeDelayObject = function (events, delay) {
 };
 
 var deepParseInt = function (input) {
-  if (typeof input === 'number') { return input; }
-
   if (typeof input === 'string') { return parseInt(input); }
 
-  var map = {};
   for (var element in input) {
-    map[element] = parseInt(input[element]);
+    input[element] = parseInt(input[element]);
   }
 
-  return map;
+  return input;
 };
 
 // 
@@ -53704,7 +53686,7 @@ var mapFields = function (fields) {
   }, {});
 };
 
-var version = '2.0.0-rc.25';
+var version = '2.0.0-rc.23';
 
 var rulesPlugin = function (ref) {
   var Validator$$1 = ref.Validator;
@@ -53771,9 +53753,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3826b91a", Component.options)
+    hotAPI.createRecord("data-v-8fbf08c4", Component.options)
   } else {
-    hotAPI.reload("data-v-3826b91a", Component.options)
+    hotAPI.reload("data-v-8fbf08c4", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -54140,7 +54122,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3826b91a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-8fbf08c4", module.exports)
   }
 }
 
@@ -54180,9 +54162,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7ae1566e", Component.options)
+    hotAPI.createRecord("data-v-e1013704", Component.options)
   } else {
-    hotAPI.reload("data-v-7ae1566e", Component.options)
+    hotAPI.reload("data-v-e1013704", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -54515,7 +54497,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7ae1566e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e1013704", module.exports)
   }
 }
 
@@ -54555,9 +54537,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-602687af", Component.options)
+    hotAPI.createRecord("data-v-f069a54c", Component.options)
   } else {
-    hotAPI.reload("data-v-602687af", Component.options)
+    hotAPI.reload("data-v-f069a54c", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -54785,7 +54767,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-602687af", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-f069a54c", module.exports)
   }
 }
 
@@ -54825,9 +54807,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-75184318", Component.options)
+    hotAPI.createRecord("data-v-77bb0ba9", Component.options)
   } else {
-    hotAPI.reload("data-v-75184318", Component.options)
+    hotAPI.reload("data-v-77bb0ba9", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -54890,7 +54872,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-75184318", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-77bb0ba9", module.exports)
   }
 }
 
@@ -54930,9 +54912,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6d3f289b", Component.options)
+    hotAPI.createRecord("data-v-d6386374", Component.options)
   } else {
-    hotAPI.reload("data-v-6d3f289b", Component.options)
+    hotAPI.reload("data-v-d6386374", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55123,7 +55105,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6d3f289b", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d6386374", module.exports)
   }
 }
 
@@ -55163,9 +55145,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-188b6562", Component.options)
+    hotAPI.createRecord("data-v-44e543c4", Component.options)
   } else {
-    hotAPI.reload("data-v-188b6562", Component.options)
+    hotAPI.reload("data-v-44e543c4", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55337,7 +55319,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-188b6562", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-44e543c4", module.exports)
   }
 }
 
@@ -55377,9 +55359,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4d40f34a", Component.options)
+    hotAPI.createRecord("data-v-2a8a7cd0", Component.options)
   } else {
-    hotAPI.reload("data-v-4d40f34a", Component.options)
+    hotAPI.reload("data-v-2a8a7cd0", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -55422,16 +55404,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    },
-    data: function data() {
-        return {};
-    },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      name: '',
+      items: [{
+        id: 1,
+        name: 'Angular'
+      }, {
+        id: 2,
+        name: 'React'
+      }, {
+        id: 3,
+        name: 'PHP'
+      }, {
+        id: 4,
+        name: 'Linux'
+      }, {
+        id: 5,
+        name: 'Vuejs'
+      }]
+    };
+  },
 
-    methods: {}
+  methods: {
+    addArray: function addArray() {
+      if (this.name == '') {
+        alert('Please input field');
+      } else {
+        var arr = { id: 6,
+          name: 'Vuejsfadfasd' };
+        this.items.push(arr);
+      }
+      console.log(this.name);
+    }
+  }
 });
 
 /***/ }),
@@ -55442,53 +55459,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-md-6 offset-md-3" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "input-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.name,
+              expression: "name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            placeholder: "Input data",
+            "aria-label": "Search for..."
+          },
+          domProps: { value: _vm.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.name = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "input-group-btn" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
+              on: { click: _vm.addArray }
+            },
+            [_vm._v("add")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("table", { staticClass: "table" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.items, function(item) {
+            return _c("tr", { key: item.id }, [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(item.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(item.name))]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true)
+            ])
+          })
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 offset-md-3" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("table", { staticClass: "table" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("First Name")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Last Name")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Larry")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("the Bird")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("button", { staticClass: "btn btn-primary col-11" }, [
-                  _vm._v("Edit")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("button", { staticClass: "btn btn-primary col-8" }, [
-                  _vm._v("Delete")
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-primary col-11" }, [_vm._v("Edit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-primary col-8" }, [_vm._v("Delete")])
     ])
   }
 ]
@@ -55497,7 +55563,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4d40f34a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2a8a7cd0", module.exports)
   }
 }
 
@@ -56618,9 +56684,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5a8ed383", Component.options)
+    hotAPI.createRecord("data-v-2f8d6710", Component.options)
   } else {
-    hotAPI.reload("data-v-5a8ed383", Component.options)
+    hotAPI.reload("data-v-2f8d6710", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -56764,7 +56830,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5a8ed383", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2f8d6710", module.exports)
   }
 }
 
@@ -56804,9 +56870,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-169c748a", Component.options)
+    hotAPI.createRecord("data-v-7cbc5520", Component.options)
   } else {
-    hotAPI.reload("data-v-169c748a", Component.options)
+    hotAPI.reload("data-v-7cbc5520", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -56871,7 +56937,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-169c748a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7cbc5520", module.exports)
   }
 }
 
