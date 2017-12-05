@@ -6,12 +6,15 @@
  */
 
 require('./bootstrap');
+// require('./node_modules/blueimp-file-upload/js/jquery.fileupload.js');
+// require('./jquery');
+
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
-// import Vuex from 'vuex';
+// import * from './medium-editor';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -30,6 +33,7 @@ import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
 import Product from './components/Product.vue';
 import TodoApp from './components/TodoApp.vue';
+import Firebase from './components/Firebase.vue';
 
 //Vuex
 import store from './store';
@@ -50,7 +54,8 @@ const routes = [
   { path: '/dashboard', component: Dashboard, name:'dashboard', meta: { requiresAuth: true }},
   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
   { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }},
-  { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }}
+  { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }},
+  { path: '/firebase', component: Firebase, name:'firebase', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({

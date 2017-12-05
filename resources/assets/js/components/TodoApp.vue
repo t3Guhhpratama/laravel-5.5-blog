@@ -12,6 +12,7 @@
             <table class="table">
             <thead>
               <tr>
+                <th scope="col">No</th>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col"></th>
@@ -21,15 +22,22 @@
             <tbody>
               <tr v-for="item in items" :key="item.id">
                 <th scope="row">{{item.id}}</th>
-                <td>{{item.name}}</td>
+                <td><input type="checkbox" v-model="item.done"/></td>
+                <td><span :class="{ taskDone:item.done}">{{item.name}}</span></td>
                 <td><button class="btn btn-primary col-11">Edit</button></td>
-                <td><button class="btn btn-primary col-8">Delete</button></td>
+                <td><button class="btn btn-primary col-8" v-on:click="deleteArray(item)">Delete</button></td>
               </tr>
             </tbody>
             </table>
         </div>
     </div>
 </template>
+
+<style>
+.taskDone{
+  text-decoration: line-through;
+}
+</style>
 
 <script>
 export default {
@@ -39,40 +47,27 @@ export default {
     data(){
       return{
         name:'',
-        items:[
-          {
-            id:1,
-            name: 'Angular'
-          },
-          {
-            id:2,
-            name: 'React'
-          },
-          {
-            id:3,
-            name: 'PHP'
-          },
-          {
-            id:4,
-            name: 'Linux'
-          },
-          {
-            id:5,
-            name: 'Vuejs'
-          }
-        ]
+        items:[{id:1,name: 'Angular', done: false}],
+        nextTodoId: 2
       }
     },
     methods:{
-      addArray(){
+      addArray(e){
         if(this.name == ''){
           alert('Please input field');
         }else{
-          let arr = {id:6,
-          name: 'Vuejsfadfasd'}
+          let arr = {
+            id:this.nextTodoId++,
+            name: this.name,
+            done: false
+          }
           this.items.push(arr)
         }
-        console.log(this.name);
+      },
+      deleteArray(data){
+        this.items.splice(this.items.indexOf(data), 1)
+        this.nextTodoId = this.nextTodoId-1
+        console.log(data.id);
       }
     }
 }
