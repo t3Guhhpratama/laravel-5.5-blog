@@ -37,14 +37,27 @@
         </div> -->
         <div class="row">
           <medium-editor :text='text' :options='options' v-on:edit='processEditOperation' custom-tag='div'>
-</medium-editor>
+            </medium-editor>
         </div>
+        <!-- <div class="row">
+          <h1>Medium Editor</h1>
+          <div class="editable">
+              <h2>Font Awesome</h2>
+              <p>My father’s family name being <a href="https://en.wikipedia.org/wiki/Pip_(Great_Expectations)">Pirrip</a>, and my Christian name Philip, my infant tongue could make of both names nothing longer or more explicit than Pip. So, I called myself Pip, and came to be called Pip.</p>
+              <p>I give Pirrip as my father’s family name, on the authority of his tombstone and my sister,—Mrs. Joe Gargery, who married the blacksmith. As I never saw my father or my mother, and never saw any likeness of either of them (for their days were long before the days of photographs), my first fancies regarding what they were like were unreasonably derived from their tombstones...</p>
+          </div>
+        </div> -->
     </div>
 </template>
 
 <script>
+    
+    var text =
+         '<p>A Vue 2 component for the the dead simple inline editor toolbar by <a href="https://yabwe.github.io/medium-editor/" target="_blank">yabwe</a>.</p>' +
+         '<p><span class="highlight animated shake">Try highlighting this text.</span></p>'
 
     export default {
+
         mounted() {
             console.log('Component mounted.')
         },

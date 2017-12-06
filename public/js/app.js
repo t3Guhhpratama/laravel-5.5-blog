@@ -13257,9 +13257,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(14);
-// require('./node_modules/blueimp-file-upload/js/jquery.fileupload.js');
-// require('./jquery');
-
 
 window.Vue = __webpack_require__(10);
 
@@ -13294,7 +13291,25 @@ Vue.component('nav-component', __webpack_require__(79), { data: {
   } });
 
 Vue.component('image-component', __webpack_require__(82));
-Vue.component('medium-editor', __WEBPACK_IMPORTED_MODULE_3_vue2_medium_editor___default.a);
+
+Vue.component('medium-editor', {
+  extends: __WEBPACK_IMPORTED_MODULE_3_vue2_medium_editor___default.a,
+  props: {
+    options: {
+      type: Object,
+      default: function _default() {
+        return {
+          imageDragging: false,
+          activeButtonClass: 'medium-editor-button-active',
+          delay: 2000,
+          toolbar: {
+            // buttons: ['bold']
+          }
+        };
+      }
+    }
+  }
+});
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
@@ -62860,7 +62875,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
+
+var text = '<p>A Vue 2 component for the the dead simple inline editor toolbar by <a href="https://yabwe.github.io/medium-editor/" target="_blank">yabwe</a>.</p>' + '<p><span class="highlight animated shake">Try highlighting this text.</span></p>';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {

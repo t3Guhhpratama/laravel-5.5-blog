@@ -6,8 +6,6 @@
  */
 
 require('./bootstrap');
-// require('./node_modules/blueimp-file-upload/js/jquery.fileupload.js');
-// require('./jquery');
 
 
 window.Vue = require('vue');
@@ -44,7 +42,25 @@ Vue.component('nav-component', require('./components/Nav.vue'),
   }});
 
 Vue.component('image-component', require('./components/Image.vue'));
-Vue.component('medium-editor', editor);
+
+Vue.component('medium-editor', {
+  extends:editor,
+  props:{
+    options:{
+      type:Object,
+      default:function(){
+        return {
+          imageDragging: false,
+          activeButtonClass: 'medium-editor-button-active',
+          delay: 2000,
+          toolbar: {
+              // buttons: ['bold']
+          }
+        }
+      }
+    }
+  }
+});
 
 Vue.http.headers.common['X-CSRF-TOKEN'] =  document.querySelector("meta[name=csrf-token]").getAttribute('content');
 
