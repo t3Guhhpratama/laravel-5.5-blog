@@ -1,4 +1,5 @@
 const state  = {
+  image: '',
   login: true,
   register: true,
   logout: false,

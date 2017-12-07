@@ -79,6 +79,7 @@ class UserController extends Controller
       // $files = Storage::files('images');
       // $files = Storage::get('images/ES6HeHDKm3k2w8kLdwtr2VrVKI8FKEKgj5xlf77w.jpeg');
       // dd($files);
+      dd($request);
       if ($request->hasFile('photo')) {
           $path = $request->photo->store('images');
           dd($path);

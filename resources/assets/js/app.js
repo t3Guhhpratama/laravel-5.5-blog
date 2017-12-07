@@ -9,6 +9,7 @@ require('./bootstrap');
 
 
 window.Vue = require('vue');
+window.MediumInsert = require('medium-editor-insert-plugin').MediumInsert;
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
@@ -17,7 +18,7 @@ import editor from 'vue2-medium-editor';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VeeValidate);
-// Vue.use(Vuex);
+// MediumInsert.use(editor)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -43,6 +44,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
 
 Vue.component('image-component', require('./components/Image.vue'));
 
+// editor.MediumInsert;
 Vue.component('medium-editor', {
   extends:editor,
   props:{
@@ -54,11 +56,25 @@ Vue.component('medium-editor', {
           activeButtonClass: 'medium-editor-button-active',
           delay: 2000,
           toolbar: {
-              // buttons: ['bold']
+              buttons: ['bold']
           }
         }
       }
     }
+  },
+  mounted() {
+    //do something after mounting vue instance
+    $(this.$refs.element).mediumInsert({
+      editor:this.$refs.api,
+      addons:{
+        images:{
+          fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+              url: 'users/upload-photo', // (string) A relative path to an upload script
+              acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
+          }
+        }
+      }
+    });
   }
 });
 

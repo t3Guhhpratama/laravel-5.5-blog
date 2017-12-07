@@ -26,6 +26,16 @@
               </form>
             </div>
         </div>
+        <div class="row">
+          <div v-if="!image">
+            <h2>Select an image</h2>
+            <input type="file" @change="onFileChange">
+          </div>
+          <div v-else>
+            <img :src="image" @click="imageClick"/>
+            <button @click="removeImage">Remove image</button>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -36,12 +46,38 @@
             return this.$store.state.count
           }
         },
+        data(){
+          return{
+            image:''
+          }
+        },
         methods:{
           submitUser(){
             return this.$store.dispatch('createUser');
           },
           submitClick(){
             return this.$store.dispatch('increment')
+          },
+          removeImage(){
+            this.image = ''
+          },
+          onFileChange(e){
+            var files = e.target.files || e.dataTransfer.files;
+            if(!files.length)
+              return;
+            this.createImage(files[0]);
+          },
+          createImage(file){
+             var image = new Image();
+             var reader = new FileReader();
+             var vm = this;
+             reader.onload = (e) => {
+               vm.image = e.target.result;
+             };
+             reader.readAsDataURL(file);
+          },
+          imageClick(){
+            alert('tes')
           }
         }
     }
