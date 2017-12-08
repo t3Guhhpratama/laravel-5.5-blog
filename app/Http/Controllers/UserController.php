@@ -76,14 +76,18 @@ class UserController extends Controller
 
     public function uploadPhoto(Request $request)
     {
-      // $files = Storage::files('images');
-      // $files = Storage::get('images/ES6HeHDKm3k2w8kLdwtr2VrVKI8FKEKgj5xlf77w.jpeg');
-      // dd($files);
-      dd($request);
-      if ($request->hasFile('photo')) {
-          $path = $request->photo->store('images');
-          dd($path);
-          return response()->json('success');
+      if ($request->hasFile('files')) {
+          $data = $request->file('files');
+          // return $data[0];
+          $path = $data[0]->store('images');
+          // return $path;
+          return response()->json([
+            'files' => [
+              [
+                'url' => asset('storage/'.$path)
+              ]
+            ]
+          ]);
       }
       return response()->json('No Data');
     }

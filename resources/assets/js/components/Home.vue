@@ -35,7 +35,7 @@
         <button class="btn btn-info" @click="getMediumData">submit</button>
         <div class="row justify-content-center" style="width:100%">
           <!-- <div class=""> -->
-            <medium-editor :text='text' v-on:edit='processEditOperation' custom-tag='div' @change="onChange">
+            <medium-editor :text='text' v-on:edit='processEditOperation' custom-tag='div'>
             </medium-editor>
           <!-- </div> -->
 
@@ -49,7 +49,7 @@
 <script>
 
     var text =
-         '<p>A Vue 2 component for the the dead simple inline editor toolbar by </p>'
+         '<p>Causes the placeholder to disappear as soon as the field gains focus. Default: true</p>'
 
     export default {
 

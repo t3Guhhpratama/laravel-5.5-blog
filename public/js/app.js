@@ -23864,6 +23864,7 @@ Vue.component('medium-editor', {
       type: Object,
       default: function _default() {
         return {
+          placeholder: false,
           imageDragging: false,
           activeButtonClass: 'medium-editor-button-active',
           delay: 2000,
@@ -23880,10 +23881,32 @@ Vue.component('medium-editor', {
       editor: this.$refs.api,
       addons: {
         images: {
+          uploadScript: null,
+          deleteScript: null,
+          captionPlaceholder: 'Descripción de imagen',
           fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-            url: 'users/upload-photo', // (string) A relative path to an upload script
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
-          }
+            url: 'api/users/upload-photo', // (string) A relative path to an upload script
+            formData: {
+              _token: document.querySelector("meta[name=csrf-token]").content
+            }
+          },
+          styles: { // (object) Available image styles configuration
+            wide: { // (object) Image style configuration. Key is used as a class name added to an image, when the style is selected (.medium-insert-images-wide)
+              label: '<span class="fa fa-align-justify"></span>' // (string) A label for a style
+              // added: function ($el) {}, // (function) Callback function called after the style was selected. A parameter $el is a current active paragraph (.medium-insert-active)
+              // removed: function ($el) {} // (function) Callback function called after a different style was selected and this one was removed. A parameter $el is a current active paragraph (.medium-insert-active)
+            },
+            left: {
+              label: '<span class="fa fa-align-left"></span>'
+            },
+            right: {
+              label: '<span class="fa fa-align-right"></span>'
+            },
+            grid: {
+              label: '<span class="fa fa-th"></span>'
+            }
+          },
+          actions: null
         }
       }
     });
@@ -77147,7 +77170,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-var text = '<p>A Vue 2 component for the the dead simple inline editor toolbar by </p>';
+var text = '<p>Causes the placeholder to disappear as soon as the field gains focus. Default: true</p>';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -77288,7 +77311,7 @@ var render = function() {
       [
         _c("medium-editor", {
           attrs: { text: _vm.text, "custom-tag": "div" },
-          on: { edit: _vm.processEditOperation, change: _vm.onChange }
+          on: { edit: _vm.processEditOperation }
         })
       ],
       1
