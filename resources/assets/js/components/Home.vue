@@ -40,7 +40,17 @@
           <!-- </div> -->
 
         </div>
-
+        <div class="row">
+          <div>
+            sdfasdfasdf
+          <!-- <h2>Infinite Loading</h2> -->
+          <p v-for="item in list">
+            Line:
+            <span v-text="item"></span>
+          </p>
+          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        </div>
+        </div>
     </div>
 </template>
 
@@ -70,10 +80,21 @@
               number: 0,
               message: [],
               activeColor: 'red',
-              fontSize: 30
+              fontSize: 30,
+              list : []
           }
         },
         methods:{
+          infiniteHandler($state){
+              setTimeout(()=>{
+                const temp = [];
+                for(let i = this.list.length + 1; i <= this.list.length + 20; i++){
+                  temp.push(i);
+                }
+                this.list = this.list.concat(temp);
+                $state.loaded();
+              }, 1000)
+          },
           processEditOperation: function (operation) {
             this.text = operation.api.origElements.innerHTML
           },

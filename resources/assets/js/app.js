@@ -14,6 +14,7 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
 import editor from 'vue2-medium-editor';
+import InfiniteLoading from 'vue-infinite-loading';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -43,6 +44,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
   }});
 
 Vue.component('image-component', require('./components/Image.vue'));
+Vue.component('infinite-loading', InfiniteLoading);
 
 // editor.MediumInsert;
 Vue.component('medium-editor', {
@@ -70,31 +72,19 @@ Vue.component('medium-editor', {
       addons:{
         images:{
           uploadScript: null,
-          deleteScript: null,
           captionPlaceholder: 'Descripción de imagen',
-          fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-              url: 'api/users/upload-photo', // (string) A relative path to an upload script
+          fileDeleteOptions: {
+            url: 'api/users/delete-photo', // (string) A relative path to an upload script
             formData: {
               _token:document.querySelector("meta[name=csrf-token]").content
             },
           },
-          styles: { // (object) Available image styles configuration
-               wide: { // (object) Image style configuration. Key is used as a class name added to an image, when the style is selected (.medium-insert-images-wide)
-                   label: '<span class="fa fa-align-justify"></span>', // (string) A label for a style
-                   // added: function ($el) {}, // (function) Callback function called after the style was selected. A parameter $el is a current active paragraph (.medium-insert-active)
-                   // removed: function ($el) {} // (function) Callback function called after a different style was selected and this one was removed. A parameter $el is a current active paragraph (.medium-insert-active)
-               },
-               left: {
-                   label: '<span class="fa fa-align-left"></span>'
-               },
-               right: {
-                   label: '<span class="fa fa-align-right"></span>'
-               },
-               grid: {
-                   label: '<span class="fa fa-th"></span>'
-               }
-           },
-         actions: null
+          fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+            url: 'api/users/upload-photo', // (string) A relative path to an upload script
+            formData: {
+              _token:document.querySelector("meta[name=csrf-token]").content
+            },
+          }
         }
       }
     });

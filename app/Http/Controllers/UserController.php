@@ -91,4 +91,12 @@ class UserController extends Controller
       }
       return response()->json('No Data');
     }
+
+    public function deletePhoto(Request $request)
+    {
+      $data = $request->input('file');
+      $slicePath = str_after($data, 'storage/');
+      Storage::delete($slicePath);
+      return 'success';
+    }
 }
