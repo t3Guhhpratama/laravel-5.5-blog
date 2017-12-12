@@ -1,8 +1,26 @@
 <template>
  <div class="col-md-6 offset-md-3">
+    <br />
+    <div class="row">
+      <div class="card col-12">
+        <div class="card-body">
+          <select class="custom-select" v-model="selected" >
+            <option selected disabled>Select Item</option>
+            <option v-for="item in items" v-model="item.id"
+            v-bind:value="item">{{item.name}}</option>
+          </select>
+          <select class="custom-select">
+            <option selected>Select Item</option>
+            <option v-for="item in items2" v-model="item.id">{{item.name}}</option>
+          </select>
+          <span>Selected: {{ selected }}</span>
+        </div>
+      </div>
+    </div>
+    <br />
     <div class="row">
       <div class="input-group">
-        <input v-model="name" type="text" class="form-control" placeholder="Input data" aria-label="Search for...">
+        <input v-model="name" @keyup.enter="addArray" type="text" class="form-control" placeholder="Input data" aria-label="Search for...">
         <span class="input-group-btn">
           <button class="btn btn-primary" type="button" v-on:click="addArray">add</button>
         </span>
@@ -42,12 +60,14 @@
 <script>
 export default {
     mounted() {
-        console.log('Component mounted.')
+         this.populate()
     },
     data(){
       return{
+        selected:'',
         name:'',
         items:[{id:1,name: 'Angular', done: false}],
+        items2:[],
         nextTodoId: 2
       }
     },
@@ -66,9 +86,14 @@ export default {
       },
       deleteArray(data){
         this.items.splice(this.items.indexOf(data), 1)
-        this.nextTodoId = this.nextTodoId-1
-        console.log(data.id);
-      }
+      },
+      selectClick(){
+        console.log(this.items);
+        this.items2 = this.items;
+      },
+       populate(){
+         console.log('tes');
+       }
     }
 }
 </script>

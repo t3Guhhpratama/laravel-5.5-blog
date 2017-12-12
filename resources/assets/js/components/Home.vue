@@ -5,6 +5,7 @@
             <button  v-on:click="loadData" type="button" class="btn btn-primary">Load data</button>
             <button v-on:click="userPage" type="button" class="btn btn-primary">Users</button>
             <button v-on:click="productPage" type="button" class="btn btn-primary">Product</button>
+            <button v-on:click="todoPage" type="button" class="btn btn-primary">Todo App</button>
           </div>
         </div>
         <!-- <div class="row">
@@ -41,15 +42,14 @@
 
         </div>
         <div class="row">
-          <div>
-            sdfasdfasdf
-          <!-- <h2>Infinite Loading</h2> -->
+          <!-- <div>
+            TEST
           <p v-for="item in list">
             Line:
             <span v-text="item"></span>
           </p>
           <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-        </div>
+          </div> -->
         </div>
     </div>
 </template>
@@ -116,6 +116,9 @@
           },
           productPage(){
             this.$router.push({path: 'product'});
+          },
+          todoPage(){
+            this.$router.push({path: 'todo-app'});
           },
           onChange(){
             console.log('tes');
