@@ -15,10 +15,12 @@ import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
 import editor from 'vue2-medium-editor';
 import InfiniteLoading from 'vue-infinite-loading';
+import InstantSearch from 'vue-instantsearch';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VeeValidate);
+Vue.use(InstantSearch);
 // MediumInsert.use(editor)
 
 /**
@@ -34,6 +36,7 @@ import User from './components/User.vue';
 import Product from './components/Product.vue';
 import TodoApp from './components/TodoApp.vue';
 import Firebase from './components/Firebase.vue';
+import AlgoliaSearch from './components/AlgoliaSearch.vue';
 
 //Vuex
 import store from './store';
@@ -45,6 +48,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
 
 Vue.component('image-component', require('./components/Image.vue'));
 Vue.component('infinite-loading', InfiniteLoading);
+Vue.component('table-results', require('./components/TableResultAlgolia.vue'));
 
 // editor.MediumInsert;
 Vue.component('medium-editor', {
@@ -101,7 +105,8 @@ const routes = [
   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
   { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }},
   { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }},
-  { path: '/firebase', component: Firebase, name:'firebase', meta: { requiresAuth: true }}
+  { path: '/firebase', component: Firebase, name:'firebase', meta: { requiresAuth: true }},
+  { path: '/algolia-search', component: AlgoliaSearch, name:'algolia', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({

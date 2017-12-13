@@ -6,6 +6,7 @@
             <button v-on:click="userPage" type="button" class="btn btn-primary">Users</button>
             <button v-on:click="productPage" type="button" class="btn btn-primary">Product</button>
             <button v-on:click="todoPage" type="button" class="btn btn-primary">Todo App</button>
+            <button v-on:click="algoliaPage" type="button" class="btn btn-primary">Algolia Search</button>
           </div>
         </div>
         <!-- <div class="row">
@@ -125,6 +126,9 @@
           },
           getMediumData(){
             console.log(this.text);
+          },
+          algoliaPage(){
+            this.$router.push({path: 'algolia-search'})
           }
         }
     }
