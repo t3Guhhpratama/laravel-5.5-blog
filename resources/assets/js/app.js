@@ -15,8 +15,9 @@ import VueResource from 'vue-resource';
 import VeeValidate from 'vee-validate';
 import editor from 'vue2-medium-editor';
 import InfiniteLoading from 'vue-infinite-loading';
-import InstantSearch from 'vue-instantsearch';
+import InstantSearch, { createFromAlgoliaCredentials } from 'vue-instantsearch';
 
+const searchStore = createFromAlgoliaCredentials('N40D9JHVMN', '6cfda334ecafdd4fdeeaccdbf52598d6');
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VeeValidate);
