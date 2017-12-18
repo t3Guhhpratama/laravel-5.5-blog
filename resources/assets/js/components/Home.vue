@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+
         <div class="row">
           <div class="btn-group" role="group">
             <button  v-on:click="loadData" type="button" class="btn btn-primary">Load data</button>
@@ -34,7 +35,7 @@
               </tbody>
           </table>
         </div>
-        <button class="btn btn-info" @click="getMediumData">submit</button>
+        <!-- <button class="btn btn-info" @click="getMediumData">submit</button> -->
         <div class="row justify-content-center" style="width:100%">
           <!-- <div class=""> -->
             <medium-editor :text='text' v-on:edit='processEditOperation' custom-tag='div'>
@@ -43,14 +44,17 @@
 
         </div>
         <div class="row">
-          <!-- <div>
-            TEST
-          <p v-for="item in list">
-            Line:
-            <span v-text="item"></span>
-          </p>
-          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-          </div> -->
+          <div>
+            <countdown deadline="2018-08-21 12:00:00" ></countdown>
+          </div>
+        </div>
+        <div class="row">
+          <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">
+              {{option.text}}
+            </option>
+          </select>
+          <span>{{selected}}</span>
         </div>
     </div>
 </template>
@@ -74,6 +78,13 @@
         },
         data(){
           return{
+              selected: 'A',
+              options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+              ],
+              picked:'',
               image:'',
               show: true,
               text: text,
@@ -82,7 +93,8 @@
               message: [],
               activeColor: 'red',
               fontSize: 30,
-              list : []
+              list : [],
+              dateTime:''
           }
         },
         methods:{

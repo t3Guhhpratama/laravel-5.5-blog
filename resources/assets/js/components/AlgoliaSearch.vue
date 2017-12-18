@@ -20,7 +20,6 @@
   <!-- <div>
     {{ query }}
   </div> -->
-
 </template>
 
 <script>
