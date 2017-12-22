@@ -7,6 +7,10 @@
                     <hr>
                 </div>
             </div>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+              </div>
+              <br />
             <div class="alert alert-danger" role="alert" v-show="alert_error">
               Wrong Email or Password!
               <button type="button" class="close" v-on:click="close_alert">
@@ -55,7 +59,8 @@ export default {
       return{
         name:'',
         email:'',
-        password:''
+        password:'',
+        widthBar: 75
       }
     },
     methods:{

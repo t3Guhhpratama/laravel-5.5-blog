@@ -100358,6 +100358,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -100373,7 +100377,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      widthBar: 75
     };
   },
 
@@ -100434,6 +100439,10 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c(
           "div",
           {
@@ -100464,7 +100473,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group " }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -100520,7 +100529,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("div", { staticClass: "input-group " }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -100574,7 +100583,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(3)
+        _vm._m(4)
       ]
     )
   ])
@@ -100590,6 +100599,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("hr")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress" }, [
+      _c("div", {
+        staticClass: "progress-bar progress-bar-striped progress-bar-animated",
+        staticStyle: { width: "75%" },
+        attrs: {
+          role: "progressbar",
+          "aria-valuenow": "40",
+          "aria-valuemin": "0",
+          "aria-valuemax": "100"
+        }
+      })
     ])
   },
   function() {
