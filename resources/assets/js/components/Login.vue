@@ -7,9 +7,10 @@
                     <hr>
                 </div>
             </div>
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-              </div>
+              <!-- <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                  v-bind:style="{ width: widthBar+'%'}"></div>
+              </div> -->
               <br />
             <div class="alert alert-danger" role="alert" v-show="alert_error">
               Wrong Email or Password!
@@ -38,7 +39,7 @@
             </div>
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Login</button>
+                    <button type="submit" class="btn btn-success btnlogin" :disabled="submitted"><i class="fa fa-sign-in"></i> Login</button>
                 </div>
             </div>
         </form>
@@ -48,7 +49,11 @@
 <script>
 export default {
     mounted() {
-        console.log('Component mounted.')
+
+    },
+    created() {
+      //do something after creating vue instance
+      // $('.btnlogin').attr('disabled','disabled');
     },
     computed:{
       alert_error(){
@@ -60,13 +65,17 @@ export default {
         name:'',
         email:'',
         password:'',
-        widthBar: 75
+        widthBar: 10,
+        max: 100,
+        submitted: false
       }
     },
     methods:{
       login(event){
         this.$validator.validateAll().then((result) => {
+          this.submitted = true
             if (result) {
+              console.log('tes');
               // eslint-disable-next-line
               this.$http.post('/api/login',
               {email: this.email, password: this.password}).then(response => {
@@ -76,6 +85,7 @@ export default {
                   this.$store.dispatch('alertErrorCommit', 1);
                   // this.$router.push({ path: '/login' });
                 }else{
+                  this.submitted = false
                   localStorage.setItem('token', 12345);
                   this.$store.commit('hideLogin');
                   this.$router.push({ path: '/' });

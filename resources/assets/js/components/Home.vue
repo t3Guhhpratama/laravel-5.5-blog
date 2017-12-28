@@ -42,12 +42,7 @@
             </medium-editor>
           <!-- </div> -->
 
-        </div>
-        <div class="row">
-          <div>
-            <countdown deadline="2018-08-21 12:00:00" ></countdown>
-          </div>
-        </div>
+        </div>+
         <div class="row">
           <select v-model="selected">
             <option v-for="option in options" v-bind:value="option.value">
