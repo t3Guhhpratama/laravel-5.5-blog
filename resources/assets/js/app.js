@@ -39,6 +39,7 @@ import TodoApp from './components/TodoApp.vue';
 import Firebase from './components/Firebase.vue';
 import AlgoliaSearch from './components/AlgoliaSearch.vue';
 import NavigationMenu from './components/NavigationMenu.vue';
+import OrderForm from './components/OrderForm.vue';
 
 //Vuex
 import store from './store';
@@ -109,7 +110,8 @@ const routes = [
   { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }},
   { path: '/firebase', component: Firebase, name:'firebase', meta: { requiresAuth: true }},
   { path: '/algolia-search', component: AlgoliaSearch, name:'algolia', meta: { requiresAuth: true }},
-  { path: '/nav', component: NavigationMenu, name:'navigation', meta: { requiresAuth: true }}
+  { path: '/nav', component: NavigationMenu, name:'navigation', meta: { requiresAuth: true }},
+  { path: '/orderform', component: OrderForm, name:'order', meta: { requiresAuth: true }}
 ]
 
 const router = new VueRouter({
