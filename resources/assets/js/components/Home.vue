@@ -42,19 +42,60 @@
             </medium-editor>
           <!-- </div> -->
 
-        </div>+
+        </div>
         <div class="row">
-          <select v-model="selected">
-            <option v-for="option in options" v-bind:value="option.value">
-              {{option.text}}
-            </option>
-          </select>
-          <span>{{selected}}</span>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" v-on:click="show = !show">
+            Launch demo modal
+          </button>
+          <!-- Modal -->
+          <transition name="modalfade">
+            <div v-if="show">
+              <div class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-bind:style="{display:'block'}">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="hideModal">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+
+        </div>
+        <div class="row">
+          <div class="myDiv" v-bind:style="{transform: 'translate('+translateValue+'px)'}"></div>
         </div>
     </div>
 </template>
 
-
+<style>
+  .modalfade-enter-active, .modalfade-leave-active {
+    transition: opacity .5s
+  }
+  .modalfade-enter, .modalfade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0
+  }
+  .myDiv{
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-color: lightblue;
+  }
+  .myTransform{
+    transform: translate(10px);
+  }
+</style>
 
 <script>
 
@@ -64,7 +105,19 @@
     export default {
 
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
+            this.$nextTick(function () {
+              // Code that will run only after the
+              // entire view has been rendered
+              let runtranslate = setInterval(()=>{
+                this.translateValue += 2 ;
+                if(this.translateValue == 200){
+                  clearInterval(runtranslate);
+                }
+                console.log(this.translateValue);
+              },20);
+
+            })
         },
         computed:{
           // image(){
@@ -73,15 +126,9 @@
         },
         data(){
           return{
-              selected: 'A',
-              options: [
-                { text: 'One', value: 'A' },
-                { text: 'Two', value: 'B' },
-                { text: 'Three', value: 'C' }
-              ],
               picked:'',
               image:'',
-              show: true,
+              show: false,
               text: text,
               userData: [],
               number: 0,
@@ -89,7 +136,8 @@
               activeColor: 'red',
               fontSize: 30,
               list : [],
-              dateTime:''
+              dateTime:'',
+              translateValue: 50
           }
         },
         methods:{
@@ -136,6 +184,10 @@
           },
           algoliaPage(){
             this.$router.push({path: 'algolia-search'})
+          },
+          hideModal(){
+            this.displayModal = 'none';
+            this.show = false;
           }
         }
     }
