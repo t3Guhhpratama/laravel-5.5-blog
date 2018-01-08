@@ -16,13 +16,28 @@ import VeeValidate from 'vee-validate';
 import editor from 'vue2-medium-editor';
 import InfiniteLoading from 'vue-infinite-loading';
 import InstantSearch, { createFromAlgoliaCredentials } from 'vue-instantsearch';
+// import Firebase from 'firebase';
+import VueFire from 'vuefire';
 
 const searchStore = createFromAlgoliaCredentials('N40D9JHVMN', '6cfda334ecafdd4fdeeaccdbf52598d6');
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VeeValidate);
 Vue.use(InstantSearch);
+Vue.use(VueFire);
 // MediumInsert.use(editor)
+// let config = {
+//   apiKey: "AIzaSyCZCje_gaZV7iv5D1Sh54W7DekY1NJ0g0E",
+//   authDomain: "authtest-1f31c.firebaseapp.com",
+//   databaseURL: "https://authtest-1f31c.firebaseio.com",
+//   projectId: "authtest-1f31c",
+//   storageBucket: "authtest-1f31c.appspot.com",
+//   messagingSenderId: "521456567676"
+// }
+// let FirebaseApp = Firebase.initializeApp(config);
+// let db = FirebaseApp.database();
+// let bookRef = db.ref('books');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36,7 +51,7 @@ import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
 import Product from './components/Product.vue';
 import TodoApp from './components/TodoApp.vue';
-import Firebase from './components/Firebase.vue';
+import FirebaseComponent from './components/Firebase.vue';
 import AlgoliaSearch from './components/AlgoliaSearch.vue';
 import NavigationMenu from './components/NavigationMenu.vue';
 import OrderForm from './components/OrderForm.vue';
@@ -52,6 +67,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
 Vue.component('image-component', require('./components/Image.vue'));
 Vue.component('infinite-loading', InfiniteLoading);
 Vue.component('table-results', require('./components/TableResultAlgolia.vue'));
+Vue.component('formaddbooks-component', require('./components/FirebaseFormAddBooks.vue'));
 
 // editor.MediumInsert;
 Vue.component('medium-editor', {
@@ -108,7 +124,7 @@ const routes = [
   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
   { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }},
   { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }},
-  { path: '/firebase', component: Firebase, name:'firebase', meta: { requiresAuth: true }},
+  { path: '/firebase', component: FirebaseComponent, name:'firebase', meta: { requiresAuth: true }},
   { path: '/algolia-search', component: AlgoliaSearch, name:'algolia', meta: { requiresAuth: true }},
   { path: '/nav', component: NavigationMenu, name:'navigation', meta: { requiresAuth: true }},
   { path: '/orderform', component: OrderForm, name:'order', meta: { requiresAuth: true }}
@@ -141,7 +157,3 @@ const app = new Vue({
   router,
   store
 }).$mount('#app')
-
-// const app = new Vue({
-//     el: '#app'
-// });

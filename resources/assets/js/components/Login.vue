@@ -39,7 +39,10 @@
             </div>
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btnlogin" :disabled="submitted"><i class="fa fa-sign-in"></i> Login</button>
+                    <button type="submit" class="btn btn-success btnlogin" :disabled="submitted">
+                      <i v-if="sign" class="fa fa-sign-in"></i>
+                      <i v-if="spin" class="fa fa-spinner fa-spin"></i>
+                      Login</button>
                 </div>
             </div>
         </form>
@@ -67,15 +70,18 @@ export default {
         password:'',
         widthBar: 10,
         max: 100,
-        submitted: false
+        submitted: false,
+        spin: false,
+        sign: true
       }
     },
     methods:{
       login(event){
         this.$validator.validateAll().then((result) => {
-          this.submitted = true
             if (result) {
-              console.log('tes');
+              this.submitted = true
+              this.spin = true
+              this.sign = false
               // eslint-disable-next-line
               this.$http.post('/api/login',
               {email: this.email, password: this.password}).then(response => {
@@ -88,7 +94,7 @@ export default {
                   this.submitted = false
                   localStorage.setItem('token', 12345);
                   this.$store.commit('hideLogin');
-                  this.$router.push({ path: '/' });
+                  this.$router.replace({ path: '/' });
                 }
 
               }, response => {
