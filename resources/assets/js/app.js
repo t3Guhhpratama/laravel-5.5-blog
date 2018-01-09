@@ -51,7 +51,7 @@ import Dashboard from './components/Dashboard.vue';
 import User from './components/User.vue';
 import Product from './components/Product.vue';
 import TodoApp from './components/TodoApp.vue';
-import FirebaseComponent from './components/Firebase.vue';
+import FirebaseComponent from './components/firebase/Firebase.vue';
 import AlgoliaSearch from './components/AlgoliaSearch.vue';
 import NavigationMenu from './components/NavigationMenu.vue';
 import OrderForm from './components/OrderForm.vue';
@@ -67,7 +67,8 @@ Vue.component('nav-component', require('./components/Nav.vue'),
 Vue.component('image-component', require('./components/Image.vue'));
 Vue.component('infinite-loading', InfiniteLoading);
 Vue.component('table-results', require('./components/TableResultAlgolia.vue'));
-Vue.component('formaddbooks-component', require('./components/FirebaseFormAddBooks.vue'));
+Vue.component('formaddbooks-component', require('./components/firebase/FirebaseFormAddBooks.vue'));
+Vue.component('formlistbooks-component', require('./components/firebase/FirebaseListBooks.vue'));
 
 // editor.MediumInsert;
 Vue.component('medium-editor', {
