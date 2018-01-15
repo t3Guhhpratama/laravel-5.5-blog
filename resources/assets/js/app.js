@@ -32,8 +32,11 @@ Vue.use(VueFire);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import Register from './components/Register.vue';
+//Firebase auth
 import RegisterFirebase from './components/auth/Register.vue';
+import LoginFirebase from './components/auth/Login.vue';
+
+import Register from './components/Register.vue';
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 import Dashboard from './components/Dashboard.vue';
@@ -119,7 +122,8 @@ const routes = [
   { path: '/algolia-search', component: AlgoliaSearch, name:'algolia', meta: { requiresAuth: true }},
   { path: '/nav', component: NavigationMenu, name:'navigation', meta: { requiresAuth: true }},
   { path: '/orderform', component: OrderForm, name:'order', meta: { requiresAuth: true }},
-  { path: '/register-firebase', component: RegisterFirebase, name:'registerfirebase'}
+  { path: '/register-firebase', component: RegisterFirebase, name:'registerfirebase'},
+  { path: '/login-firebase', component: LoginFirebase, name:'loginfirebase'}
 ]
 
 const router = new VueRouter({
@@ -137,7 +141,7 @@ router.beforeEach((to, from, next) => {
     }else{
 
       next({
-        path: '/register-firebase'
+        path: '/login-firebase'
         // query: { redirect: to.fullPath }
       });
     }

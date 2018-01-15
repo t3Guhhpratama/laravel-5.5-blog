@@ -46,14 +46,6 @@ export default {
     methods:{
       register(){
         this.spin = true;
-        // let user = firebase.auth().currentUser;
-        // if (user) {
-        //   // User is signed in.
-        //   console.log(user.email);
-        // } else {
-        //   // No user is signed in.
-        //   console.log(user);
-        // }
         firebase.auth().createUserWithEmailAndPassword(this.newUser.email, this.newUser.password).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;

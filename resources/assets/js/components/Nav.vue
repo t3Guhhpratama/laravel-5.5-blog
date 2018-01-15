@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import firebase from '../firebase';
     export default {
         computed:{
             login(){
@@ -31,7 +32,8 @@
         },
         methods:{
           logoutMethod(){
-            this.$router.push({ path: '/login' });
+            firebase.auth().signOut();
+            this.$router.push({ path: '/login-firebase' });
             localStorage.removeItem('token');
             this.$store.commit('showLogin');
           }

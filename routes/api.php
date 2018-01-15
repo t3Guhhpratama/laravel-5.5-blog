@@ -23,3 +23,5 @@ Route::get('users', 'UserController@index');
 Route::post('users', 'UserController@create');
 Route::post('users/upload-photo', 'UserController@uploadPhoto');
 Route::post('users/delete-photo', 'UserController@deletePhoto');
+
+Route::get('users/auth', 'UserController@auth');

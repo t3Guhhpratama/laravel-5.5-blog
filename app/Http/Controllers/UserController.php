@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUsers;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class UserController extends Controller
 {
@@ -68,6 +69,8 @@ class UserController extends Controller
       if($users){
         if (Hash::check($password, $users->password)) {
             // The passwords match...
+            // dd($users->id);
+            // Auth::loginUsingId($users->id);
             return response()->json('success');
         }
       }
@@ -98,5 +101,10 @@ class UserController extends Controller
       $slicePath = str_after($data, 'storage/');
       Storage::delete($slicePath);
       return 'success';
+    }
+
+    public function auth(){
+      $user = Auth::id();
+      return $user;
     }
 }

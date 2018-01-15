@@ -51,12 +51,16 @@
 
 <script>
 export default {
+    beforeMount() {
+      //do something before mounting vue instance
+      console.log(localStorage.getItem('token'));
+      let token = localStorage.getItem('token')
+      if(token){
+        this.$router.replace({ path: '/' });
+      }
+    },
     mounted() {
 
-    },
-    created() {
-      //do something after creating vue instance
-      // $('.btnlogin').attr('disabled','disabled');
     },
     computed:{
       alert_error(){
