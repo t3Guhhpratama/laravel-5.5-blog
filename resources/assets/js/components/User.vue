@@ -21,26 +21,58 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
-                  {{count}}
                   <button type="submit" class="btn btn-primary" v-on:click="submitClick">Submit</button>
               </form>
             </div>
         </div>
         <div class="row">
-          <div v-if="!image">
-            <h2>Select an image</h2>
-            <input type="file" @change="onFileChange">
-          </div>
-          <div v-else>
-            <img :src="image" @click="imageClick"/>
-            <button @click="removeImage">Remove image</button>
-          </div>
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>Teguh</td>
+                  <td>Teguh@gmail.com</td>
+                </tr>
+                <tr v-for="(data, key) in arr">
+                  <th scope="row">{{key+1}}</th>
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.email }}</td>
+                </tr>
+              </tbody>
+          </table>
         </div>
     </div>
 </template>
 
 <script>
+import firebase from '../firebase';
+const db_users = firebase.database().ref('users');
     export default {
+        mounted() {
+          //do something after mounting vue instance
+          // db_users.orderByKey().on("child_added", function(snapshot) {
+          //
+          //   let data = snapshot.val();
+          //   console.log(snapshot.key);
+          //   // console.log(snapshot.val());
+          //   // data.forEach(d=>{
+          //   //   console.log(d.email);
+          //   // })
+          // });
+          db_users.orderByValue().on("value", snapshot=>{
+            let data = snapshot.val();
+            this.arr = data;
+            console.log(this.arr);
+          })
+          console.log(db_users);
+        },
         computed:{
           count(){
             return this.$store.state.count
@@ -48,7 +80,8 @@
         },
         data(){
           return{
-            image:''
+            image:'',
+            arr: ''
           }
         },
         methods:{

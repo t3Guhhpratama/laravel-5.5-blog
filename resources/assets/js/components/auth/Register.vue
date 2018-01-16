@@ -29,8 +29,15 @@
 
 <script>
 import firebase from '../../firebase';
+const db_users = firebase.database().ref('users');
+const auth = firebase.auth()
 export default {
-    mounted() {
+    beforeMount() {
+      //do something before mounting vue instance
+      let token = localStorage.getItem('token')
+      if(token){
+        this.$router.replace({ path: '/' });
+      }
     },
     data(){
       return{
@@ -45,8 +52,28 @@ export default {
     },
     methods:{
       register(){
-        this.spin = true;
-        firebase.auth().createUserWithEmailAndPassword(this.newUser.email, this.newUser.password).catch(function(error) {
+        let self = this;
+        self.spin = true;
+        let email = self.newUser.email;
+        let password = self.newUser.password;
+        // let uid = auth.currentUser.uid;
+        //Firebase Query
+        // db_users.orderByChild("uid").equalTo(uid).on("child_added",snapshot => {
+        //     const userData = snapshot.val();
+        //     console.log(userData);
+        // });
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+            self.spin = false;
+            let uid = auth.currentUser.uid;
+            let data = {
+              uid: uid,
+              email: email
+            }
+            let newPostKey = db_users.push(data).key;
+            self.$router.push({ path: '/login-firebase' });
+        }).catch(function(error) {
+          self.spin = false;
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -56,7 +83,7 @@ export default {
               alert(errorMessage);
             }
             console.log(error);
-          });
+        });
       }
     }
 }
