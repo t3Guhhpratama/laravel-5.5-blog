@@ -29,27 +29,74 @@
           <table class="table">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
+                  <!-- <th scope="col">#</th> -->
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <th>1</th>
                   <td>Teguh</td>
                   <td>Teguh@gmail.com</td>
-                </tr>
+                </tr> -->
                 <tr v-for="(data, key) in arr">
-                  <th scope="row">{{key+1}}</th>
+                  <!-- <th scope="row">{{key+1}}</th> -->
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
+                  <td v-on:click="modalShow(data)" ><i class="fa fa-edit"></i></td>
                 </tr>
               </tbody>
           </table>
         </div>
+        <!-- Modal -->
+        <transition name="modalfade">
+          <div v-if="modalshow">
+            <div class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-bind:style="{display:'block'}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="hideModal">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form v-on:submit.prevent="updateUser">
+                      <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                          <input v-model="email" type="text" class="form-control" placeholder="Email" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">name</label>
+                        <div class="col-sm-8">
+                          <input v-model="name" type="text" class="form-control" placeholder="Name">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
     </div>
 </template>
+
+<style>
+.modalfade-enter-active, .modalfade-leave-active{
+  transition: opacity .5s
+}
+.modalfade-enter, .modalfade-leave-to{
+  opacity: 0
+}
+</style>
 
 <script>
 import firebase from '../firebase';
@@ -81,10 +128,20 @@ const db_users = firebase.database().ref('users');
         data(){
           return{
             image:'',
-            arr: ''
+            arr: '',
+            modalshow: false,
+            email:'tes',
+            name:''
           }
         },
         methods:{
+          modalShow(arr){
+            this.modalshow = true
+            console.log(arr.email);
+          },
+          hideModal(){
+            this.modalshow = false
+          },
           submitUser(){
             return this.$store.dispatch('createUser');
           },
@@ -111,6 +168,9 @@ const db_users = firebase.database().ref('users');
           },
           imageClick(){
             alert('tes')
+          },
+          updateUser(){
+
           }
         }
     }
