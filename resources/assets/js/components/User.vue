@@ -15,7 +15,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
@@ -64,6 +64,10 @@
                   </div>
                   <div class="modal-body">
                     <form v-on:submit.prevent="updateUser">
+                      <div class="row">
+                        <img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68dd54ca-60cf-4ef7-898b-26d7cbe48ec7/10-dithering-opt.jpg"
+                        class="rounded float-left" alt="..." style="width:200px;height:200px">
+                      </div>
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-8">
@@ -79,7 +83,7 @@
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" v-on:click="updateUser(uid)">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -103,22 +107,10 @@ import firebase from '../firebase';
 const db_users = firebase.database().ref('users');
     export default {
         mounted() {
-          //do something after mounting vue instance
-          // db_users.orderByKey().on("child_added", function(snapshot) {
-          //
-          //   let data = snapshot.val();
-          //   console.log(snapshot.key);
-          //   // console.log(snapshot.val());
-          //   // data.forEach(d=>{
-          //   //   console.log(d.email);
-          //   // })
-          // });
           db_users.orderByValue().on("value", snapshot=>{
             let data = snapshot.val();
             this.arr = data;
-            console.log(this.arr);
           })
-          console.log(db_users);
         },
         computed:{
           count(){
@@ -131,13 +123,16 @@ const db_users = firebase.database().ref('users');
             arr: '',
             modalshow: false,
             email:'tes',
-            name:''
+            name:'',
+            uid:''
           }
         },
         methods:{
           modalShow(arr){
             this.modalshow = true
-            console.log(arr.email);
+            this.email = arr.email;
+            this.name = arr.name;
+            this.uid = arr.uid;
           },
           hideModal(){
             this.modalshow = false
@@ -169,8 +164,12 @@ const db_users = firebase.database().ref('users');
           imageClick(){
             alert('tes')
           },
-          updateUser(){
-
+          updateUser(uid){
+            let self = this;
+            db_users.orderByChild("uid").equalTo(uid).once("child_added", snapshot=>{
+              snapshot.ref.update({ name: self.name })
+            });
+            this.modalshow = false
           }
         }
     }
