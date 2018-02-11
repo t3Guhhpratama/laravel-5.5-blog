@@ -9,13 +9,13 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-8">
-                  <input v-model="user.email" type="text" class="form-control" placeholder="Email">
+                  <input v-model="user.email" type="text" class="form-control" placeholder="teguh@gmail.com">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-8">
-                  <input v-model="user.password" type="password" class="form-control" placeholder="Password">
+                  <input v-model="user.password" type="password" class="form-control" placeholder="qwerty123">
                 </div>
               </div>
               <button class="btn btn-primary" :disabled="submitted"><i v-if="spin" class="fa fa-spinner fa-spin"></i>
@@ -47,8 +47,8 @@ export default {
         submitted: false,
         spin:false,
         user:{
-          email:'teguh@gmail.com',
-          password:'qwerty123'
+          email:'',
+          password:''
         }
       }
     },

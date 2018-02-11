@@ -1,5 +1,8 @@
 <template>
     <div class="col-md-10 offset-md-2">
+        <p>
+          Add Book & Delete book using Vuejs, All data will be saved into firebase database.
+        </p>
         <br />
         <div class="row">
           <formaddbooks-component :bookRef="bookRef"/>
