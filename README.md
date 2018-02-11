@@ -1,1 +1,1 @@
-# laravel-5.5-blog
+# Laravel 5.5 & VueJS
