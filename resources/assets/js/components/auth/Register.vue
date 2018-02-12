@@ -71,7 +71,7 @@ export default {
               email: email
             }
             let newPostKey = db_users.push(data).key;
-            self.$router.push({ path: '/login-firebase' });
+            self.$router.push({ path: '/login' });
         }).catch(function(error) {
           self.spin = false;
           // Handle Errors here.

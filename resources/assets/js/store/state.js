@@ -3,7 +3,7 @@ const state  = {
   login: true,
   register: true,
   logout: false,
-  users:[],
+  user: false,
   count: 0,
   alert_error:false,
   products:[

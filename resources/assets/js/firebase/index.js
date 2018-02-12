@@ -1,6 +1,6 @@
 import Firebase from 'firebase'
 const firebaseApp = Firebase.initializeApp({
-  apiKey: "AIzaSyCc2CYLmmzF7w3Xx_im2kATozcxPXXdwSg",
+  apiKey: 'AIzaSyCc2CYLmmzF7w3Xx_im2kATozcxPXXdwSg',
   authDomain: "vuejs-firebase-4e815.firebaseapp.com",
   databaseURL: "https://vuejs-firebase-4e815.firebaseio.com",
   projectId: "vuejs-firebase-4e815",

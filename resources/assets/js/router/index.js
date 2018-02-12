@@ -5,6 +5,7 @@ import LoginFirebase from '../components/auth/Login.vue';
 import RegisterFirebase from '../components/auth/Register.vue';
 import Home from '../components/Home.vue';
 import FirebaseComponent from '../components/firebase/Firebase.vue';
+import UserComponent from '../components/firebase/User.vue';
 import store from '../store';
 
 
@@ -15,7 +16,8 @@ const router =  new VueRouter({
   routes:[
     { path: '/', component: FirebaseComponent, name:'FirebaseComponent', meta: { requiresAuth: true }},
     { path: '/login', component: LoginFirebase, name:'login' },
-    { path: '/register', component: RegisterFirebase, name:'register' }
+    { path: '/register', component: RegisterFirebase, name:'register' },
+    { path: '/user', component: UserComponent, name:'user', meta: { requiresAuth: true } }
   ]
 })
 
