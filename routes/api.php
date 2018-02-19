@@ -25,3 +25,5 @@ Route::post('users/upload-photo', 'UserController@uploadPhoto');
 Route::post('users/delete-photo', 'UserController@deletePhoto');
 
 Route::get('users/auth', 'UserController@auth');
+
+Route::get('send-mail/{email}','UserController@sendMail');

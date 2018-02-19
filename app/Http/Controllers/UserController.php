@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUsers;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterSuccess;
 
 class UserController extends Controller
 {
@@ -106,5 +108,11 @@ class UserController extends Controller
     public function auth(){
       $user = Auth::id();
       return $user;
+    }
+
+    public function sendMail($email){
+      $data = ['name'=>$email];
+      Mail::to($email)->send(new RegisterSuccess($data));
+      return 'success';
     }
 }

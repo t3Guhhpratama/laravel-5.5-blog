@@ -62,6 +62,8 @@ export default {
         //     const userData = snapshot.val();
         //     console.log(userData);
         // });
+        // GET /someUrl
+        
 
         firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
             self.spin = false;
@@ -71,7 +73,17 @@ export default {
               email: email
             }
             let newPostKey = db_users.push(data).key;
-            self.$router.push({ path: '/login' });
+
+            //Send Email
+            this.$http.get('/api/send-mail/'+email).then(response => {
+              // get body data
+              let someData = response.body;
+              self.$router.push({ path: '/login' });
+            }, response => {
+              // error callback
+              console.log(response);
+            });
+           
         }).catch(function(error) {
           self.spin = false;
           // Handle Errors here.
