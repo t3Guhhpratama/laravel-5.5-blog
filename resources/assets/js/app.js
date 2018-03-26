@@ -56,7 +56,7 @@ Vue.component('nav-component', require('./components/Nav.vue'),
   {data: {
     login: true
   }});
-
+Vue.component('footer-component',require('./components/Footer-1.vue'));
 Vue.component('image-component', require('./components/Image.vue'));
 Vue.component('infinite-loading', InfiniteLoading);
 Vue.component('table-results', require('./components/TableResultAlgolia.vue'));
@@ -109,45 +109,6 @@ Vue.component('medium-editor', {
 });
 
 Vue.http.headers.common['X-CSRF-TOKEN'] =  document.querySelector("meta[name=csrf-token]").getAttribute('content');
-
-// const routes = [
-//   { path: '/', component: Home, name:'home', meta: { requiresAuth: true }},
-//   { path: '/register', component: Register, name:'register' },
-//   { path: '/login', component: Login, name:'login' },
-//   { path: '/dashboard', component: Dashboard, name:'dashboard', meta: { requiresAuth: true }},
-//   { path: '/user', component: User, name:'user', meta: { requiresAuth: true }},
-//   { path: '/product', component: Product, name:'product', meta: { requiresAuth: true }},
-//   { path: '/todo-app', component: TodoApp, name:'todoapp', meta: { requiresAuth: true }},
-//   { path: '/firebase', component: FirebaseComponent, name:'firebase', meta: { requiresAuth: true }},
-//   { path: '/algolia-search', component: AlgoliaSearch, name:'algolia', meta: { requiresAuth: true }},
-//   { path: '/nav', component: NavigationMenu, name:'navigation', meta: { requiresAuth: true }},
-//   { path: '/orderform', component: OrderForm, name:'order', meta: { requiresAuth: true }},
-//   { path: '/register-firebase', component: RegisterFirebase, name:'registerfirebase'},
-//   { path: '/login-firebase', component: LoginFirebase, name:'loginfirebase'}
-// ]
-//
-// const router = new VueRouter({
-//   mode: 'history',
-//   routes // short for `routes: routes`
-// });
-
-// router.beforeEach((to, from, next) => {
-//   // localStorage.removeItem('token');
-//   if(to.meta.requiresAuth){
-//     const authUser = localStorage.getItem('token');
-//     if(authUser){
-//       store.commit('hideLogin');
-//       next();
-//     }else{
-//
-//       next({
-//         path: '/login-firebase'
-//         // query: { redirect: to.fullPath }
-//       });
-//     }
-//   }
-//   next();
-// });
 
 const app = new Vue({
   router,

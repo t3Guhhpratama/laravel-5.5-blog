@@ -1,5 +1,21 @@
 <template>
     <div class="col-md-10 offset-md-2">
+        <div class="col-md-12 nav-child">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+        </div>
         <p>
           Add Book & Delete book using Vuejs, All data will be saved into firebase database.
         </p>
